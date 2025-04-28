@@ -1,13 +1,100 @@
-<section class="event_registration layout_padding">
-  <div class="container">
-    <h2>Registro para el Evento</h2>
-    <form id="eventForm">
-      <input type="text" name="name" placeholder="Nombre" required />
-      <input type="email" name="email" placeholder="Correo electrónico" required />
-      <input type="hidden" name="latitude" id="latitude" />
-      <input type="hidden" name="longitude" id="longitude" />
-      <button type="submit">Registrarse</button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro al Evento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #3f51b5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #303f9f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #eee;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Registro al Evento 2025</h1>
+    <p>Únete a nosotros el 15 de junio para una experiencia inolvidable</p>
+  </header>
+
+  <main>
+    <h2>Formulario de Registro</h2>
+    <form action="https://formsubmit.co/tucorreo@example.com" method="POST">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mensaje">¿Qué esperas del evento?</label>
+      <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+
+      <button type="submit">Registrarme</button>
     </form>
-    <div id="statusMessage"></div>
-  </div>
-</section>
+  </main>
+
+  <footer>
+    &copy; 2025 Evento Corporativo. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
