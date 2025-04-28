@@ -1,91 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro al Evento</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      padding: 20px;
       background-color: #f4f4f4;
     }
-    header {
-      background-color: #3f51b5;
-      color: white;
-      padding: 20px;
-      text-align: center;
+
+    h1 {
+      color: #333;
     }
-    main {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1, h2 {
-      text-align: center;
-    }
+
     form {
-      display: flex;
-      flex-direction: column;
-    }
-    label {
-      margin-top: 10px;
-    }
-    input, textarea {
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px;
-      background-color: #3f51b5;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #303f9f;
-    }
-    footer {
-      text-align: center;
+      background-color: #fff;
       padding: 20px;
-      background-color: #eee;
-      font-size: 0.9em;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Registro al Evento 2025</h1>
-    <p>Únete a nosotros el 15 de junio para una experiencia inolvidable</p>
-  </header>
+  <h1>Registro al Evento</h1>
 
-  <main>
-    <h2>Formulario de Registro</h2>
-    <form action="https://formspree.io/f/xanonrkn" method="POST">
-      <label for="nombre">Nombre completo:</label>
-      <input type="text" id="nombre" name="nombre" required>
+  <form action="https://formspree.io/f/mnqkwxyz" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre completo" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
 
-      <label for="email">Correo electrónico:</label>
-      <input type="email" id="email" name="email" required>
+    <!-- Campos ocultos para ubicación -->
+    <input type="hidden" name="latitud" id="latitud">
+    <input type="hidden" name="longitud" id="longitud">
 
-      <label for="mensaje">¿Qué esperas del evento?</label>
-      <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+    <button type="submit">Registrarme</button>
+  </form>
 
-      <button type="submit">Registrarme</button>
-    </form>
-  </main>
-
-  <footer>
-    &copy; 2025 Evento Corporativo. Todos los derechos reservados.
-  </footer>
+  <script>
+    // Obtener ubicación del usuario
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById('latitud').value = position.coords.latitude;
+        document.getElementById('longitud').value = position.coords.longitude;
+      }, function(error) {
+        console.warn("Ubicación no permitida o no disponible.");
+      });
+    } else {
+      console.warn("Geolocalización no soportada por este navegador.");
+    }
+  </script>
 
 </body>
 </html>
