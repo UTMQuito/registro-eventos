@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Registro al Evento</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f4;
+      background-image: url('https://source.unsplash.com/1600x900/?event,people');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #fff;
     }
 
     h1 {
-      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
     }
 
     form {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #000;
+      padding: 25px;
+      border-radius: 10px;
       max-width: 500px;
-      margin: auto;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     input, button {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 4px;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 5px;
       border: 1px solid #ccc;
+      font-size: 1em;
     }
 
     button {
       background-color: #007BFF;
       color: #fff;
       font-weight: bold;
-      cursor: pointer;
       border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
       background-color: #0056b3;
+    }
+
+    .disabled {
+      background-color: #ccc !important;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -49,15 +69,16 @@
 
   <h1>Registro al Evento</h1>
 
-  <form action="https://formspree.io/f/xanonrkn" method="POST">
+  <form id="registroForm" action="https://formspree.io/f/xanonrkn" method="POST">
     <input type="text" name="nombre" placeholder="Nombre completo" required>
     <input type="email" name="email" placeholder="Correo electrónico" required>
+    <input type="text" name="cedula" placeholder="Número de cédula" required pattern="\d+" title="Solo números">
 
-    <!-- Campos ocultos para ubicación -->
+    <!-- Ubicación -->
     <input type="hidden" name="latitud" id="latitud">
     <input type="hidden" name="longitud" id="longitud">
 
-    <button type="submit">Registrarme</button>
+    <button type="submit" id="botonRegistro">Registrarme</button>
   </form>
 
   <script>
@@ -66,11 +87,22 @@
       navigator.geolocation.getCurrentPosition(function(position) {
         document.getElementById('latitud').value = position.coords.latitude;
         document.getElementById('longitud').value = position.coords.longitude;
-      }, function(error) {
-        console.warn("Ubicación no permitida o no disponible.");
       });
+    }
+
+    // Verificar si ya se registró en este dispositivo
+    const form = document.getElementById('registroForm');
+    const boton = document.getElementById('botonRegistro');
+
+    if (localStorage.getItem('yaRegistrado')) {
+      boton.disabled = true;
+      boton.textContent = "Ya te has registrado";
+      boton.classList.add('disabled');
+      form.addEventListener('submit', e => e.preventDefault());
     } else {
-      console.warn("Geolocalización no soportada por este navegador.");
+      form.addEventListener('submit', function() {
+        localStorage.setItem('yaRegistrado', 'true');
+      });
     }
   </script>
 
