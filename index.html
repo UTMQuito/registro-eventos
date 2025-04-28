@@ -38,7 +38,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    input, button {
+    input, select, button {
       width: 100%;
       padding: 12px;
       margin: 12px 0;
@@ -74,6 +74,16 @@
     <input type="text" name="nombre" placeholder="Nombre completo" required>
     <input type="text" name="cedula" placeholder="Número de cédula" required pattern="\d+" title="Solo números">
     <input type="email" name="email" placeholder="Correo electrónico" required>
+
+    <!-- Campo de selección de carrera -->
+    <label for="carrera">Carrera:</label>
+    <select name="carrera" id="carrera" required>
+      <option value="" disabled selected>Selecciona una carrera</option>
+      <option value="Educación Básica">Educación Básica</option>
+      <option value="Educación Inicial">Educación Inicial</option>
+      <option value="Bibliotecología">Bibliotecología</option>
+      <option value="Psicología">Psicología</option>
+    </select>
 
     <!-- Ubicación -->
     <input type="hidden" name="latitud" id="latitud">
